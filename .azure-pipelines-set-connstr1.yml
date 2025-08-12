@@ -1,0 +1,36 @@
+trigger: none  # elle çalıştıracağız
+
+stages:
+- stage: SetConnStr
+  displayName: Set App Service Connection String
+  variables:
+    - group: vg-prod1
+  jobs:
+  - job: Set
+    displayName: Set DefaultConnection on WebApp
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+    - task: AzureCLI@2
+      displayName: 'az webapp config connection-string set'
+      inputs:
+        azureSubscription: 'AzureTaskTracker-ServiceConnection'   # Service connection adın
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az webapp config connection-string set \
+            --resource-group devops-dashboard-rg \
+            --name azuretasktracker \
+            --settings DefaultConnection="$(AZURE_SQL_CONNECTION_STRING)" \
+            --connection-string-type SQLAzure
+
+    - task: AzureCLI@2
+      displayName: 'Verify (list connection strings)'
+      inputs:
+        azureSubscription: 'AzureTaskTracker-ServiceConnection'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az webapp config connection-string list \
+            --resource-group devops-dashboard-rg \
+            --name azuretasktracker
