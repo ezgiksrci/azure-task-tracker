@@ -70,19 +70,19 @@ stages:
               slotName: 'staging'
               package: '$(Pipeline.Workspace)/drop/**/*.zip'
 
-              # EF Core CLI yükleme
+          # EF Core CLI yükleme
           - script: dotnet tool install --global dotnet-ef --version 8.*
             displayName: Install dotnet-ef tool
             env:
-             PATH: $(PATH):$(USERPROFILE)\.dotnet\tools
+              PATH: $(PATH):$(USERPROFILE)\.dotnet\tools
 
-          # EF Core Migration (tek proje olduğu için parametre yok)
+          # EF Core Migration (tek proje olduğu için sadece .csproj yolu veriyoruz)
           - task: DotNetCoreCLI@2
             displayName: Run EF Migrations on Staging
             inputs:
               command: custom
               custom: ef
-              arguments: database update
+              arguments: database update --project AzureTaskTracker/AzureTaskTracker.csproj
 
           # Staging Smoke Test
           - script: |
