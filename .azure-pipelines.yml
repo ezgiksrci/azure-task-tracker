@@ -62,26 +62,26 @@ stages:
             artifact: drop
 
           - task: AzureWebApp@1
-            displayName: Deploy to azuretasktracker (Staging Slot)
+            displayName: Deploy to $(AZ_APP_NAME) (Staging Slot)
             inputs:
               azureSubscription: 'AzureTaskTracker-ServiceConnection'
               appType: 'webApp'
-              appName: 'azuretasktracker'
+              appName: '$(AZ_APP_NAME)'
               slotName: 'staging'
               package: '$(Pipeline.Workspace)/drop/**/*.zip'
 
-          # EF Core Migration
+          # EF Core Migration (tek proje olduğu için parametre yok)
           - task: DotNetCoreCLI@2
             displayName: Run EF Migrations on Staging
             inputs:
               command: custom
               custom: ef
-              arguments: database update --project AzureTaskTracker.Infrastructure --context AppDbContext
+              arguments: database update
 
           # Staging Smoke Test
           - script: |
               echo "Running smoke test on staging..."
-              CODE=$(curl -s -o /dev/null -w "%{http_code}" https://azuretasktracker-staging.azurewebsites.net/swagger/index.html)
+              CODE=$(curl -s -o /dev/null -w "%{http_code}" https://$(AZ_APP_NAME)-staging.azurewebsites.net/swagger/index.html)
               echo "HTTP: $CODE"
               if [ "$CODE" -ne 200 ]; then
                 echo "Smoke test failed. Stopping pipeline."
@@ -93,6 +93,8 @@ stages:
 - stage: Swap_To_Prod
   displayName: Swap Staging to Production
   dependsOn: Deploy_Staging
+  variables:
+    - group: vg-prod
   jobs:
   - job: Swap
     steps:
@@ -100,7 +102,7 @@ stages:
       displayName: Swap Slots (Staging -> Prod)
       inputs:
         azureSubscription: 'AzureTaskTracker-ServiceConnection'
-        WebAppName: 'azuretasktracker'
-        ResourceGroupName: 'devops-dashboard-rg'
+        WebAppName: '$(AZ_APP_NAME)'
+        ResourceGroupName: '$(AZ_RESOURCE_GROUP)'
         SourceSlot: 'staging'
         SwapWithProduction: true
