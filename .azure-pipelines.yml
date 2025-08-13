@@ -4,13 +4,16 @@ trigger:
       - main
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: windows-latest
 
 variables:
-  buildConfiguration: 'Release'
+  - name: buildConfiguration
+    value: Release
+  # Connection string, app name, resource group vb. için
+  - group: vg-prod
 
 stages:
-# 1. Build, Migration & Package
+# 1) Build, Migrate & Package
 - stage: Build
   displayName: Build, Run Migration & Package
   jobs:
@@ -18,34 +21,50 @@ stages:
     steps:
     - task: UseDotNet@2
       inputs:
-        packageType: 'sdk'
-        version: '8.x'
+        packageType: sdk
+        version: 8.x
 
     - task: DotNetCoreCLI@2
       displayName: Restore
       inputs:
-        command: 'restore'
+        command: restore
         projects: '**/*.csproj'
 
     - task: DotNetCoreCLI@2
       displayName: Build
       inputs:
-        command: 'build'
+        command: build
         projects: '**/*.csproj'
         arguments: '--configuration $(buildConfiguration)'
 
-    # EF Core Migration (tek adım)
-    - script: |
-        dotnet tool install --global dotnet-ef --version 8.*
-        set PATH=%PATH%;%USERPROFILE%\.dotnet\tools
-        dotnet ef database update
+    # ---- EF Core Migrations ----
+    # Neden PS? Windows ajanında PATH güncellemesini güvenilir yapmak için.
+    - task: PowerShell@2
       displayName: Run EF Migrations (Build Stage)
-      workingDirectory: $(System.DefaultWorkingDirectory)/AzureTaskTracker
+      inputs:
+        targetType: inline
+        workingDirectory: '$(System.DefaultWorkingDirectory)/AzureTaskTracker'
+        script: |
+          $ErrorActionPreference = 'Stop'
+
+          # EF CLI kurulum + PATH
+          dotnet tool install --global dotnet-ef --version 8.* | Out-Host
+          $env:Path += ";$env:USERPROFILE\.dotnet\tools"
+
+          dotnet --info | Out-Host
+          dotnet ef --version | Out-Host
+
+          if (-not $env:AZ_SQL_CONN) {
+            throw 'AZ_SQL_CONN is not set. Add it in variable group vg-prod.'
+          }
+
+          # Verbose ile ayrıntılı log
+          dotnet ef database update --connection "$env:AZ_SQL_CONN" -v
 
     - task: DotNetCoreCLI@2
       displayName: Publish (zip)
       inputs:
-        command: 'publish'
+        command: publish
         publishWebProjects: true
         arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
         zipAfterPublish: true
@@ -53,15 +72,13 @@ stages:
     - publish: $(Build.ArtifactStagingDirectory)
       artifact: drop
 
-# 2. Deploy to Staging Slot
+# 2) Deploy to Staging Slot
 - stage: Deploy_Staging
   displayName: Deploy to Staging Slot
   dependsOn: Build
-  variables:
-    - group: vg-prod
   jobs:
   - deployment: WebApp_Staging
-    environment: 'staging'
+    environment: staging
     strategy:
       runOnce:
         deploy:
@@ -72,37 +89,38 @@ stages:
           - task: AzureWebApp@1
             displayName: Deploy to $(AZ_APP_NAME) (Staging Slot)
             inputs:
-              azureSubscription: 'AzureTaskTracker-ServiceConnection'
-              appType: 'webApp'
+              azureSubscription: AzureTaskTracker-ServiceConnection
+              appType: webApp
               appName: '$(AZ_APP_NAME)'
-              slotName: 'staging'
+              slotName: staging
               package: '$(Pipeline.Workspace)/drop/**/*.zip'
 
-          # Staging Smoke Test
-          - script: |
-              echo "Running smoke test on staging..."
-              CODE=$(curl -s -o /dev/null -w "%{http_code}" https://$(AZ_APP_NAME)-staging.azurewebsites.net/swagger/index.html)
-              echo "HTTP: $CODE"
-              if [ "$CODE" -ne 200 ]; then
-                echo "Smoke test failed. Stopping pipeline."
-                exit 1
-              fi
-            displayName: 'Smoke Test (Staging)'
+          # Staging Smoke Test (Windows ajanında Bash kullan)
+          - task: Bash@3
+            displayName: Smoke Test (Staging)
+            inputs:
+              targetType: inline
+              script: |
+                echo "Running smoke test on staging..."
+                CODE=$(curl -s -o /dev/null -w "%{http_code}" https://$(AZ_APP_NAME)-staging.azurewebsites.net/swagger/index.html)
+                echo "HTTP: $CODE"
+                if [ "$CODE" -ne 200 ]; then
+                  echo "Smoke test failed. Stopping pipeline."
+                  exit 1
+                fi
 
-# 3. Swap to Production
+# 3) Swap to Production
 - stage: Swap_To_Prod
   displayName: Swap Staging to Production
   dependsOn: Deploy_Staging
-  variables:
-    - group: vg-prod
   jobs:
   - job: Swap
     steps:
     - task: AzureAppServiceManage@0
       displayName: Swap Slots (Staging -> Prod)
       inputs:
-        azureSubscription: 'AzureTaskTracker-ServiceConnection'
+        azureSubscription: AzureTaskTracker-ServiceConnection
         WebAppName: '$(AZ_APP_NAME)'
         ResourceGroupName: '$(AZ_RESOURCE_GROUP)'
-        SourceSlot: 'staging'
+        SourceSlot: staging
         SwapWithProduction: true
