@@ -10,11 +10,11 @@ variables:
   buildConfiguration: 'Release'
 
 stages:
-# 1. Build & Package
+# 1. Build, Migration & Package
 - stage: Build
-  displayName: Build & Package
+  displayName: Build, Run Migration & Package
   jobs:
-  - job: Build
+  - job: BuildAndMigrate
     steps:
     - task: UseDotNet@2
       inputs:
@@ -34,6 +34,15 @@ stages:
         projects: '**/*.csproj'
         arguments: '--configuration $(buildConfiguration)'
 
+    # EF Core Migration (kod burada mevcut)
+    - script: |
+        dotnet tool install --global dotnet-ef --version 8.*
+        dotnet ef database update
+      displayName: Run EF Migrations (Build Stage)
+      workingDirectory: $(System.DefaultWorkingDirectory)/AzureTaskTracker
+      env:
+        PATH: $(PATH):$(USERPROFILE)\.dotnet\tools
+
     - task: DotNetCoreCLI@2
       displayName: Publish (zip)
       inputs:
@@ -45,7 +54,7 @@ stages:
     - publish: $(Build.ArtifactStagingDirectory)
       artifact: drop
 
-# 2. Deploy to Staging Slot + EF Migration
+# 2. Deploy to Staging Slot
 - stage: Deploy_Staging
   displayName: Deploy to Staging Slot
   dependsOn: Build
@@ -69,15 +78,6 @@ stages:
               appName: '$(AZ_APP_NAME)'
               slotName: 'staging'
               package: '$(Pipeline.Workspace)/drop/**/*.zip'
-
-          # EF Core Migration (tek script adımı)
-          - script: |
-              dotnet tool install --global dotnet-ef --version 8.*
-              dotnet ef database update
-            displayName: Run EF Migrations on Staging
-            workingDirectory: $(System.DefaultWorkingDirectory)/AzureTaskTracker
-            env:
-              PATH: $(PATH):$(USERPROFILE)\.dotnet\tools
 
           # Staging Smoke Test
           - script: |
