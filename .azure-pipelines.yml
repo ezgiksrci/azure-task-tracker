@@ -45,7 +45,7 @@ stages:
     - publish: $(Build.ArtifactStagingDirectory)
       artifact: drop
 
-# 2. Deploy to Staging Slot
+# 2. Deploy to Staging Slot + EF Migration
 - stage: Deploy_Staging
   displayName: Deploy to Staging Slot
   dependsOn: Build
@@ -70,20 +70,14 @@ stages:
               slotName: 'staging'
               package: '$(Pipeline.Workspace)/drop/**/*.zip'
 
-          # EF Core CLI yükleme
-          - script: dotnet tool install --global dotnet-ef --version 8.*
-            displayName: Install dotnet-ef tool
+          # EF Core Migration (tek script adımı)
+          - script: |
+              dotnet tool install --global dotnet-ef --version 8.*
+              dotnet ef database update
+            displayName: Run EF Migrations on Staging
+            workingDirectory: $(System.DefaultWorkingDirectory)/AzureTaskTracker
             env:
               PATH: $(PATH):$(USERPROFILE)\.dotnet\tools
-
-          # EF Core Migration (proje klasöründe çalıştırma)
-          - task: DotNetCoreCLI@2
-            displayName: Run EF Migrations on Staging
-            inputs:
-              command: custom
-              custom: ef
-              arguments: database update
-              workingDirectory: $(System.DefaultWorkingDirectory)/AzureTaskTracker
 
           # Staging Smoke Test
           - script: |
