@@ -34,14 +34,13 @@ stages:
         projects: '**/*.csproj'
         arguments: '--configuration $(buildConfiguration)'
 
-    # EF Core Migration (kod burada mevcut)
+    # EF Core Migration (tek adım)
     - script: |
         dotnet tool install --global dotnet-ef --version 8.*
+        set PATH=%PATH%;%USERPROFILE%\.dotnet\tools
         dotnet ef database update
       displayName: Run EF Migrations (Build Stage)
       workingDirectory: $(System.DefaultWorkingDirectory)/AzureTaskTracker
-      env:
-        PATH: $(PATH):$(USERPROFILE)\.dotnet\tools
 
     - task: DotNetCoreCLI@2
       displayName: Publish (zip)
