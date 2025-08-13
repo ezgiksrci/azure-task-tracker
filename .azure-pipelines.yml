@@ -70,6 +70,12 @@ stages:
               slotName: 'staging'
               package: '$(Pipeline.Workspace)/drop/**/*.zip'
 
+          # EF Core CLI yükleme
+          - script: dotnet tool install --global dotnet-ef --version 8.*
+            displayName: Install dotnet-ef tool
+            env:
+            PATH: $(PATH):$(USERPROFILE)\.dotnet\tools
+
           # EF Core Migration (tek proje olduğu için parametre yok)
           - task: DotNetCoreCLI@2
             displayName: Run EF Migrations on Staging
