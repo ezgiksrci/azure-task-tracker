@@ -76,13 +76,14 @@ stages:
             env:
               PATH: $(PATH):$(USERPROFILE)\.dotnet\tools
 
-          # EF Core Migration (.csproj yolu ile)
+          # EF Core Migration (proje klasöründe çalıştırma)
           - task: DotNetCoreCLI@2
             displayName: Run EF Migrations on Staging
             inputs:
               command: custom
               custom: ef
-              arguments: database update --project $(System.DefaultWorkingDirectory)/AzureTaskTracker/AzureTaskTracker.csproj
+              arguments: database update
+              workingDirectory: $(System.DefaultWorkingDirectory)/AzureTaskTracker
 
           # Staging Smoke Test
           - script: |
