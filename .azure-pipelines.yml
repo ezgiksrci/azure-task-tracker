@@ -61,7 +61,7 @@ stages:
               appName: 'azuretasktracker'
               package: '$(Pipeline.Workspace)/drop/**/*.zip'
 
-# ConnStr'ı pipeline'dan set etmek için aç:
+# ConnStr'ı pipeline'dan set etmek için:
           - task: AzureCLI@2
             inputs:
               azureSubscription: 'AzureTaskTracker-ServiceConnection'
@@ -73,3 +73,14 @@ stages:
                   --name azuretasktracker \
                   --settings DefaultConnection="$(AZURE_SQL_CONNECTION_STRING)" \
                   --connection-string-type SQLAzure
+# Test
+          - bash: |
+              set -e
+              echo "Smoke: Swagger sayfasını kontrol ediyorum…"
+              CODE=$(curl -s -o /dev/null -w "%{http_code}" https://$(AZ_APP_NAME).azurewebsites.net/swagger/index.html)
+              echo "HTTP: $CODE"
+              if [ "$CODE" -ne 200 ]; then
+                echo "Swagger açılmıyor. Deploy başarısız sayıldı."
+                exit 1
+              fi
+            displayName: 'Smoke: Swagger 200 döndü mü?'
