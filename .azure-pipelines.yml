@@ -54,9 +54,17 @@ stages:
           Write-Host "PowerShell Version: $($PSVersionTable.PSVersion)"
           
           try {
-            # .NET EF tool kurulumu
+            # .NET EF tool kurulumu - önce mevcut olanı kaldır, sonra kur
+            Write-Host "Checking if dotnet-ef is already installed..."
+            $efInstalled = dotnet tool list --global | Select-String "dotnet-ef"
+            
+            if ($efInstalled) {
+              Write-Host "dotnet-ef already installed, uninstalling first: $efInstalled"
+              dotnet tool uninstall --global dotnet-ef
+            }
+            
             Write-Host "Installing dotnet-ef tool globally..."
-            dotnet tool install --global dotnet-ef --version 8.* --force
+            dotnet tool install --global dotnet-ef --version 8.*
             if ($LASTEXITCODE -ne 0) {
               throw "dotnet-ef tool installation failed with exit code: $LASTEXITCODE"
             }
