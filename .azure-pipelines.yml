@@ -36,7 +36,7 @@ stages:
         projects: '**/*.csproj'
         arguments: '--configuration $(buildConfiguration)'
 
-    # EF Core Migration - İyileştirilmiş hata yönetimi ile
+    # EF Core Migration - Tool PATH sorunu çözülmüş
     - task: PowerShell@2
       displayName: Run EF Migrations (Build Stage)
       inputs:
@@ -54,30 +54,41 @@ stages:
           Write-Host "PowerShell Version: $($PSVersionTable.PSVersion)"
           
           try {
-            # .NET EF tool kurulumu - önce kontrol et
-            Write-Host "Checking if dotnet-ef is already installed..."
-            $efInstalled = dotnet tool list --global | Select-String "dotnet-ef"
-            
-            if (-not $efInstalled) {
-              Write-Host "Installing dotnet-ef tool..."
-              dotnet tool install --global dotnet-ef --version 8.*
-              if ($LASTEXITCODE -ne 0) {
-                throw "dotnet-ef tool installation failed with exit code: $LASTEXITCODE"
-              }
-            } else {
-              Write-Host "dotnet-ef already installed: $efInstalled"
+            # .NET EF tool kurulumu
+            Write-Host "Installing dotnet-ef tool globally..."
+            dotnet tool install --global dotnet-ef --version 8.* --force
+            if ($LASTEXITCODE -ne 0) {
+              throw "dotnet-ef tool installation failed with exit code: $LASTEXITCODE"
             }
             
-            # PATH güncelleme
-            Write-Host "Updating PATH..."
-            $env:PATH += ";$env:USERPROFILE\.dotnet\tools"
-            Write-Host "Current PATH: $env:PATH"
+            Write-Host "dotnet-ef tool installed successfully"
             
-            # EF tool version kontrolü
-            Write-Host "Verifying EF tool installation..."
-            dotnet ef --version
+            # Global tools PATH'i manuel olarak ayarla
+            $globalToolsPath = "$env:USERPROFILE\.dotnet\tools"
+            Write-Host "Global tools path: $globalToolsPath"
+            
+            # PATH'e ekle (başa ekle ki öncelikli olsun)
+            $env:PATH = "$globalToolsPath;$env:PATH"
+            Write-Host "Updated PATH with global tools directory"
+            
+            # EF executable'ın tam yolunu bul ve test et
+            $efPath = Join-Path $globalToolsPath "dotnet-ef.exe"
+            Write-Host "Expected EF path: $efPath"
+            Write-Host "EF executable exists: $(Test-Path $efPath)"
+            
+            # Liste global tools
+            Write-Host "Listing global tools:"
+            dotnet tool list --global
+            
+            # EF tool version kontrolü - tam path ile
+            Write-Host "Verifying EF tool installation with full path..."
+            & "$efPath" --version
             if ($LASTEXITCODE -ne 0) {
-              throw "dotnet-ef verification failed with exit code: $LASTEXITCODE"
+              Write-Host "Direct path failed, trying with dotnet ef command..."
+              dotnet ef --version
+              if ($LASTEXITCODE -ne 0) {
+                throw "dotnet-ef verification failed with exit code: $LASTEXITCODE"
+              }
             }
             
             # Connection string kontrolü
@@ -94,6 +105,10 @@ stages:
             $csprojFiles = Get-ChildItem -Name "*.csproj"
             Write-Host "Found .csproj files: $csprojFiles"
             
+            if ($csprojFiles.Count -eq 0) {
+              throw "No .csproj files found in the working directory"
+            }
+            
             # DbContext kontrolü
             Write-Host "Checking for DbContext..."
             $contextFiles = Get-ChildItem -Recurse -Name "*Context.cs" -ErrorAction SilentlyContinue
@@ -105,15 +120,23 @@ stages:
               $migrations = Get-ChildItem "Migrations" -Name "*.cs" | Where-Object { $_ -notlike "*Designer.cs" }
               Write-Host "Found migrations: $migrations"
             } else {
-              Write-Host "No Migrations folder found"
+              Write-Host "No Migrations folder found - this might be expected for first deployment"
             }
             
-            # Database update çalıştır
+            # Database update çalıştır - tam path ile
             Write-Host "Running database update..."
-            dotnet ef database update --connection "$conn" --verbose
+            Write-Host "Using connection string (first 50 chars): $($conn.Substring(0, [Math]::Min(50, $conn.Length)))..."
             
-            if ($LASTEXITCODE -ne 0) {
-              throw "EF database update failed with exit code: $LASTEXITCODE"
+            # Önce tam path ile dene
+            & "$efPath" database update --connection "$conn" --verbose
+            $efExitCode = $LASTEXITCODE
+            
+            if ($efExitCode -ne 0) {
+              Write-Host "Full path failed, trying with dotnet ef command..."
+              dotnet ef database update --connection "$conn" --verbose
+              if ($LASTEXITCODE -ne 0) {
+                throw "EF database update failed with exit code: $LASTEXITCODE"
+              }
             }
             
             Write-Host "=== EF Core Migration Tamamlandı ==="
@@ -124,6 +147,14 @@ stages:
             Write-Host $_.Exception.ToString()
             Write-Host "Stack Trace:"
             Write-Host $_.ScriptStackTrace
+            
+            # Debug için ek bilgiler
+            Write-Host "=== Debug Information ==="
+            Write-Host "Current PATH: $env:PATH"
+            Write-Host "Global tools directory contents:"
+            if (Test-Path "$env:USERPROFILE\.dotnet\tools") {
+              Get-ChildItem "$env:USERPROFILE\.dotnet\tools" -Name
+            }
             exit 1
           }
 
