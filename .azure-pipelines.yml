@@ -41,7 +41,7 @@ stages:
       displayName: Run EF Migrations (Build Stage)
       inputs:
         targetType: 'inline'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/AzureTaskTracker'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/src/AzureTaskTracker.Api'
         errorActionPreference: 'stop'
         ignoreLASTEXITCODE: false
         script: |
