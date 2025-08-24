@@ -3,50 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|c:\\users\\ezgi\\source\\repos\\azuretasktracker\\azuretasktracker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|solutionrelative:azuretasktracker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|c:\\users\\ezgi\\source\\repos\\azuretasktracker\\azuretasktracker\\models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|solutionrelative:azuretasktracker\\models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|c:\\users\\ezgi\\source\\repos\\azuretasktracker\\azuretasktracker\\azuretasktracker.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|solutionrelative:azuretasktracker\\azuretasktracker.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|c:\\users\\ezgi\\source\\repos\\azuretasktracker\\azuretasktracker\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|solutionrelative:azuretasktracker\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AE625C53-B6FC-48F8-97C6-647D92A1D75E}|src\\AzureTaskTracker.Application\\AzureTaskTracker.Application.csproj|c:\\users\\ezgi\\source\\repos\\azuretasktracker\\src\\azuretasktracker.application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE625C53-B6FC-48F8-97C6-647D92A1D75E}|src\\AzureTaskTracker.Application\\AzureTaskTracker.Application.csproj|solutionrelative:src\\azuretasktracker.application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ezgi\\AppData\\Roaming\\Microsoft\\UserSecrets\\56e7c9d4-e6ad-45ae-89db-e9dbdd0ef0f7\\secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|c:\\users\\ezgi\\source\\repos\\azuretasktracker\\azuretasktracker\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|solutionrelative:azuretasktracker\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|c:\\users\\ezgi\\source\\repos\\azuretasktracker\\azuretasktracker\\migrations\\appdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|solutionrelative:azuretasktracker\\migrations\\appdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|c:\\users\\ezgi\\source\\repos\\azuretasktracker\\azuretasktracker\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|solutionrelative:azuretasktracker\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|c:\\users\\ezgi\\source\\repos\\azuretasktracker\\azuretasktracker\\properties\\publishprofiles\\azuretasktracker - web deploy.pubxml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|solutionrelative:azuretasktracker\\properties\\publishprofiles\\azuretasktracker - web deploy.pubxml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|c:\\users\\ezgi\\source\\repos\\azuretasktracker\\azuretasktracker\\azuretasktracker.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|solutionrelative:azuretasktracker\\azuretasktracker.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|c:\\users\\ezgi\\source\\repos\\azuretasktracker\\azuretasktracker\\migrations\\20250811134249_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9975D471-E60F-4AB4-B209-5212B56C1CD3}|AzureTaskTracker\\AzureTaskTracker.csproj|solutionrelative:azuretasktracker\\migrations\\20250811134249_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -56,138 +20,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TasksController.cs",
-              "DocumentMoniker": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\Controllers\\TasksController.cs",
-              "RelativeDocumentMoniker": "AzureTaskTracker\\Controllers\\TasksController.cs",
-              "ToolTip": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\Controllers\\TasksController.cs",
-              "RelativeToolTip": "AzureTaskTracker\\Controllers\\TasksController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAfAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\src\\AzureTaskTracker.Application\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "src\\AzureTaskTracker.Application\\DependencyInjection.cs",
+              "ToolTip": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\src\\AzureTaskTracker.Application\\DependencyInjection.cs",
+              "RelativeToolTip": "src\\AzureTaskTracker.Application\\DependencyInjection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-06T16:34:54.129Z",
+              "WhenOpened": "2025-08-24T15:08:47.437Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TaskItem.cs",
-              "DocumentMoniker": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\Models\\TaskItem.cs",
-              "RelativeDocumentMoniker": "AzureTaskTracker\\Models\\TaskItem.cs",
-              "ToolTip": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\Models\\TaskItem.cs",
-              "RelativeToolTip": "AzureTaskTracker\\Models\\TaskItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T12:33:32.944Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AzureTaskTracker.csproj",
-              "DocumentMoniker": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\AzureTaskTracker.csproj",
-              "RelativeDocumentMoniker": "AzureTaskTracker\\AzureTaskTracker.csproj",
-              "ToolTip": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\AzureTaskTracker.csproj",
-              "RelativeToolTip": "AzureTaskTracker\\AzureTaskTracker.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-08-11T12:33:05.208Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\Program.cs",
-              "RelativeDocumentMoniker": "AzureTaskTracker\\Program.cs",
-              "ToolTip": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\Program.cs",
-              "RelativeToolTip": "AzureTaskTracker\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T12:36:38.552Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "secrets.json",
               "DocumentMoniker": "C:\\Users\\ezgi\\AppData\\Roaming\\Microsoft\\UserSecrets\\56e7c9d4-e6ad-45ae-89db-e9dbdd0ef0f7\\secrets.json",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Roaming\\Microsoft\\UserSecrets\\56e7c9d4-e6ad-45ae-89db-e9dbdd0ef0f7\\secrets.json",
               "ToolTip": "C:\\Users\\ezgi\\AppData\\Roaming\\Microsoft\\UserSecrets\\56e7c9d4-e6ad-45ae-89db-e9dbdd0ef0f7\\secrets.json",
               "RelativeToolTip": "..\\..\\..\\AppData\\Roaming\\Microsoft\\UserSecrets\\56e7c9d4-e6ad-45ae-89db-e9dbdd0ef0f7\\secrets.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABZAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-08-11T13:31:46.943Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "AzureTaskTracker\\Data\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "AzureTaskTracker\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T12:34:50.374Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AppDbContextModelSnapshot.cs",
-              "DocumentMoniker": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\Migrations\\AppDbContextModelSnapshot.cs",
-              "RelativeDocumentMoniker": "AzureTaskTracker\\Migrations\\AppDbContextModelSnapshot.cs",
-              "ToolTip": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\Migrations\\AppDbContextModelSnapshot.cs",
-              "RelativeToolTip": "AzureTaskTracker\\Migrations\\AppDbContextModelSnapshot.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T13:43:11.878Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\appsettings.json",
-              "RelativeDocumentMoniker": "AzureTaskTracker\\appsettings.json",
-              "ToolTip": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\appsettings.json",
-              "RelativeToolTip": "AzureTaskTracker\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-11T12:38:03.1Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AzureTaskTracker - Web Deploy.pubxml",
-              "DocumentMoniker": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\Properties\\PublishProfiles\\AzureTaskTracker - Web Deploy.pubxml",
-              "RelativeDocumentMoniker": "AzureTaskTracker\\Properties\\PublishProfiles\\AzureTaskTracker - Web Deploy.pubxml",
-              "ToolTip": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\Properties\\PublishProfiles\\AzureTaskTracker - Web Deploy.pubxml",
-              "RelativeToolTip": "AzureTaskTracker\\Properties\\PublishProfiles\\AzureTaskTracker - Web Deploy.pubxml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
-              "WhenOpened": "2025-08-11T16:40:56.96Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "AzureTaskTracker",
-              "DocumentMoniker": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\AzureTaskTracker.csproj",
-              "RelativeDocumentMoniker": "AzureTaskTracker\\AzureTaskTracker.csproj",
-              "ToolTip": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\AzureTaskTracker.csproj",
-              "RelativeToolTip": "AzureTaskTracker\\AzureTaskTracker.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-08-11T16:20:17.473Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 2,
               "Title": "Microsoft.Common.CurrentVersion.targets",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
@@ -196,18 +67,6 @@
               "ViewState": "AgIAABoTAAAAAAAAAAAqwCYTAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
               "WhenOpened": "2025-08-11T13:58:39.049Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "20250811134249_InitialCreate.cs",
-              "DocumentMoniker": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\Migrations\\20250811134249_InitialCreate.cs",
-              "RelativeDocumentMoniker": "AzureTaskTracker\\Migrations\\20250811134249_InitialCreate.cs",
-              "ToolTip": "C:\\Users\\ezgi\\source\\repos\\AzureTaskTracker\\AzureTaskTracker\\Migrations\\20250811134249_InitialCreate.cs",
-              "RelativeToolTip": "AzureTaskTracker\\Migrations\\20250811134249_InitialCreate.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T13:42:49.676Z"
             }
           ]
         }
